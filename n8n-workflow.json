@@ -1,0 +1,1833 @@
+{
+  "name": "AI-Assisted Course Design Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "AI-Assisted Course Design Request",
+        "formDescription": "Submit a training request. This form will create a draft course brief for instructional-design review.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Requester Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Requester Email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Department",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Training Topic",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Business Problem",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Audience",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Audience Size",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Delivery Format",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "E-learning"
+                  },
+                  {
+                    "option": "Instructor-led training"
+                  },
+                  {
+                    "option": "Blended learning"
+                  },
+                  {
+                    "option": "Micro-learning"
+                  },
+                  {
+                    "option": "Not sure"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Deadline",
+              "fieldType": "date",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Source Material",
+              "fieldType": "textarea"
+            },
+            {
+              "fieldLabel": "SME Name"
+            },
+            {
+              "fieldLabel": "SME Email",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Compliance Requirement",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes "
+                  },
+                  {
+                    "option": "No"
+                  },
+                  {
+                    "option": "Not sure"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Preferred Tone",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Formal"
+                  },
+                  {
+                    "option": "Friendly"
+                  },
+                  {
+                    "option": "Concise"
+                  },
+                  {
+                    "option": "Practical"
+                  },
+                  {
+                    "option": "Not sure"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c4c9bd00-98ab-4f60-9683-00ef5ef7fe8c",
+      "name": "Training Request Form",
+      "webhookId": "699335bc-a0bd-4b40-a20c-80e99eb959ea"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g",
+          "mode": "list",
+          "cachedResultName": "AI Course Design Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Request ID": "={{ \"REQ-\" + $now.toFormat(\"yyyyLLdd-HHmmss\") }}",
+            "Submitted At": "={{ $json.submittedAt }}",
+            "Requester Name": "={{ $json['Requester Name'] }}",
+            "Requester Email": "={{ $json['Requester Email'] }}",
+            "Department": "={{ $json.Department }}",
+            "Training Topic": "={{ $json['Training Topic'] }}",
+            "Business Problem": "={{ $json['Business Problem'] }}",
+            "Target Audience": "={{ $json['Target Audience'] }}",
+            "Audience Size": "={{ $json['Audience Size'] }}",
+            "Delivery Format": "={{ $json['Delivery Format'] }}",
+            "Deadline": "={{ $json.Deadline }}",
+            "Source Material": "={{ $json['Source Material'] }}",
+            "SME Name": "={{ $json['SME Name'] }}",
+            "SME Email ": "={{ $json['SME Email'] }}",
+            "Compliance Requirement": "={{ $json['Compliance Requirement'] }}",
+            "Preferred Tone": "={{ $json['Preferred Tone'] }}",
+            "Status": "New"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Request ID",
+              "displayName": "Request ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Submitted At",
+              "displayName": "Submitted At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Name",
+              "displayName": "Requester Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Email",
+              "displayName": "Requester Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Department",
+              "displayName": "Department",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Training Topic",
+              "displayName": "Training Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Business Problem",
+              "displayName": "Business Problem",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Target Audience",
+              "displayName": "Target Audience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Audience Size",
+              "displayName": "Audience Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Delivery Format",
+              "displayName": "Delivery Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source Material",
+              "displayName": "Source Material",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Name",
+              "displayName": "SME Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Email ",
+              "displayName": "SME Email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Compliance Requirement",
+              "displayName": "Compliance Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Preferred Tone",
+              "displayName": "Preferred Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Draft",
+              "displayName": "AI Draft",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Decision",
+              "displayName": "Reviewer Decision",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Feedback",
+              "displayName": "Reviewer Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Final Brief Link",
+              "displayName": "Final Brief Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Notes",
+              "displayName": "Error Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "2df0f1da-e1d1-4063-8498-8f6c4f7d996b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dt5jjof0B50r5HhX",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7fe9cba7-85c9-4dcc-9a88-3f49182f4071",
+              "name": "openai_prompt",
+              "value": "=You are an expert instructional designer using the ADDIE model.  Create a practical course design brief from the training request below.  Training topic: {{$json[\"Training Topic\"]}} Business problem: {{$json[\"Business Problem\"]}} Target audience: {{$json[\"Target Audience\"]}} Audience size: {{$json[\"Audience Size\"]}} Preferred delivery format: {{$json[\"Delivery Format\"]}} Deadline: {{$json[\"Deadline\"]}} Source material: {{$json[\"Source Material\"]}} SME name: {{$json[\"SME Name\"]}} SME email: {{$json[\"SME Email\"]}} Compliance requirement: {{$json[\"Compliance Requirement\"]}} Preferred tone: {{$json[\"Preferred Tone\"]}}  Return the brief using these headings:  1. Training need summary 2. Performance problem 3. Target audience 4. 3-5 measurable learning objectives 5. Recommended course format 6. Proposed course outline with estimated timing 7. Suggested scenario-based practice 8. Assessment approach 9. Missing information 10. Human review notes  Important rules: - Do not invent facts. - If information is missing, say so under Missing information. - Use measurable action verbs. - Keep the output practical and concise. - AI is only assisting. Human instructional-design review is still required.",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "7947b728-0a42-45aa-b817-bc7fa3ddff2a",
+      "name": "Build OpenAI Prompt"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4",
+          "mode": "list",
+          "cachedResultName": "GPT-4"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "={{$json[\"openai_prompt\"]}}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        624,
+        0
+      ],
+      "id": "57a1397d-340b-43b7-adba-8b918d46ddf2",
+      "name": "Generate Course Brief with OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "XApoOrPDfPegqGJv",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9bacfcf5-93ac-474e-b861-7a5d6110f444",
+              "name": "ai_draft",
+              "value": "={{$json.output[0].content[0].text}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        976,
+        0
+      ],
+      "id": "ac710e22-86a0-48c2-a854-15a240dfcbce",
+      "name": "Extract AI Draft"
+    },
+    {
+      "parameters": {
+        "folderId": "1vwn3kIWdKMjF4aXIzgy9Dc6vXWuMdy4g",
+        "title": "=AI Course Brief - {{$node[\"Training Request Form\"].json[\"Training Topic\"]}} - {{$now.toFormat(\"yyyyLLdd-HHmm\")}}"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        1184,
+        0
+      ],
+      "id": "7cfeed1b-a4f6-4a23-8057-5adb57696eca",
+      "name": "Create Draft Brief Document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "PtGcbpmig6CuX8Sf",
+          "name": "Google Docs OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "=AI-ASSISTED COURSE DESIGN BRIEF\n\nTraining Topic:\n{{$node[\"Training Request Form\"].json[\"Training Topic\"]}}\n\nRequester:\n{{$node[\"Training Request Form\"].json[\"Requester Name\"]}} - {{$node[\"Training Request Form\"].json[\"Requester Email\"]}}\n\nDepartment:\n{{$node[\"Training Request Form\"].json[\"Department\"]}}\n\nTarget Audience:\n{{$node[\"Training Request Form\"].json[\"Target Audience\"]}}\n\nDelivery Format:\n{{$node[\"Training Request Form\"].json[\"Delivery Format\"]}}\n\nDeadline:\n{{$node[\"Training Request Form\"].json[\"Deadline\"]}}\n\nCompliance Requirement:\n{{$node[\"Training Request Form\"].json[\"Compliance Requirement\"]}}\n\nSME:\n{{$node[\"Training Request Form\"].json[\"SME Name\"]}} - {{$node[\"Training Request Form\"].json[\"SME Email\"]}}\n\n------------------------------------------------------------\n\nAI-GENERATED DRAFT BRIEF\n\n{{$node[\"Extract AI Draft\"].json[\"ai_draft\"]}}\n\n------------------------------------------------------------\n\nHUMAN REVIEW REQUIRED\n\nThis draft was generated using AI. It must be reviewed by an instructional designer and/or SME before development or publishing."
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        1392,
+        0
+      ],
+      "id": "b54e37f3-28ee-4af2-b227-d17233e46bf6",
+      "name": "Add Brief Content to Document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "PtGcbpmig6CuX8Sf",
+          "name": "Google Docs OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "={{$node[\"Training Request Form\"].json[\"SME Email\"]}}",
+        "subject": "=Review needed: AI course brief - {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}",
+        "message": "=<p>Hello {{$node[\"Training Request Form\"].json[\"SME Name\"]}},</p>\n\n<p>A new AI-assisted course design brief has been created for review.</p>\n\n<p><strong>Training topic:</strong> {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}</p>\n\n<p><strong>Requester:</strong> {{$node[\"Training Request Form\"].json[\"Requester Name\"]}} \n({{$node[\"Training Request Form\"].json[\"Requester Email\"]}})</p>\n\n<p><strong>Department:</strong> {{$node[\"Training Request Form\"].json[\"Department\"]}}</p>\n\n<p><strong>Target audience:</strong> {{$node[\"Training Request Form\"].json[\"Target Audience\"]}}</p>\n\n<p>Please review the draft brief here:</p>\n\n<p>\n<a href=\"https://docs.google.com/document/d/{{$node[\"Create Draft Brief Document\"].json[\"id\"]}}/edit\">\nOpen AI Course Design Brief\n</a>\n</p>\n\n<p>Please check:</p>\n<ul>\n  <li>whether the learning objectives are measurable,</li>\n  <li>whether the course outline matches the training need,</li>\n  <li>whether any facts, process details, or compliance points need correction,</li>\n  <li>whether anything should be revised before course development starts.</li>\n</ul>\n\n<p><strong>Important:</strong> This draft was generated with AI and must be reviewed by a human instructional designer or SME before use.</p>\n\n<p>Regards,<br>\nAkinwale</p>",
+        "responseType": "customForm",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Reviewer Decision",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Approve"
+                  },
+                  {
+                    "option": "Revise "
+                  },
+                  {
+                    "option": "Reject"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Reviewer Feedback",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1600,
+        0
+      ],
+      "id": "0e6582d8-d155-449c-a20b-8614ca92e1c1",
+      "name": "Send Review Request",
+      "webhookId": "bcc65bda-af7c-4cea-b492-26739c92f029",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BICmAVRiz5bO9KHt",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json[\"data\"][\"Reviewer Decision\"].trim() }}",
+                    "rightValue": "Approve",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "7fe39d1f-590b-4b8e-a548-e2b425824548"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Approve"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "74bb6e23-5542-4d23-bfce-df3d6d70c9b7",
+                    "leftValue": "={{ $json[\"data\"][\"Reviewer Decision\"].trim() }}",
+                    "rightValue": "Revise",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Revise"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "d3111890-c75e-4d43-b9ca-5da86cc602d2",
+                    "leftValue": "={{ $json[\"data\"][\"Reviewer Decision\"].trim() }}",
+                    "rightValue": "Reject",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Reject"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1808,
+        0
+      ],
+      "id": "73eabe38-4c17-48bc-bee9-253ceea14e46",
+      "name": "Route Review Decision"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g",
+          "mode": "list",
+          "cachedResultName": "AI Course Design Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Request ID": "={{$node[\"Append row in sheet\"].json[\"Request ID\"]}}",
+            "Reviewer Decision": "={{$json[\"data\"][\"Reviewer Decision\"]}}",
+            "Reviewer Feedback": "={{$json[\"data\"][\"Reviewer Feedback\"]}}",
+            "Final Brief Link": "=https://docs.google.com/document/d/{{$node[\"Create Draft Brief Document\"].json[\"id\"]}}/edit",
+            "Status": "Approved"
+          },
+          "matchingColumns": [
+            "Request ID"
+          ],
+          "schema": [
+            {
+              "id": "Request ID",
+              "displayName": "Request ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Submitted At",
+              "displayName": "Submitted At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Name",
+              "displayName": "Requester Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Email",
+              "displayName": "Requester Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Department",
+              "displayName": "Department",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Training Topic",
+              "displayName": "Training Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Business Problem",
+              "displayName": "Business Problem",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Target Audience",
+              "displayName": "Target Audience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Audience Size",
+              "displayName": "Audience Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Delivery Format",
+              "displayName": "Delivery Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source Material",
+              "displayName": "Source Material",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Name",
+              "displayName": "SME Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Email ",
+              "displayName": "SME Email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Compliance Requirement",
+              "displayName": "Compliance Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Preferred Tone",
+              "displayName": "Preferred Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Draft",
+              "displayName": "AI Draft",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Decision",
+              "displayName": "Reviewer Decision",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Feedback",
+              "displayName": "Reviewer Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Final Brief Link",
+              "displayName": "Final Brief Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Notes",
+              "displayName": "Error Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2032,
+        -192
+      ],
+      "id": "faf90a46-59e3-4d76-bea2-110e16d1132e",
+      "name": "Update Status to Approved",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dt5jjof0B50r5HhX",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$node[\"Training Request Form\"].json[\"Requester Email\"]}}",
+        "subject": "=Course brief approved: {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}",
+        "message": "=<p>Hello {{$node[\"Training Request Form\"].json[\"Requester Name\"]}},</p>\n\n<p>The AI-assisted course design brief for your training request has been reviewed and approved.</p>\n\n<p><strong>Training topic:</strong> {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}</p>\n\n<p><strong>Status:</strong> Approved</p>\n\n<p>You can view the approved course brief here:</p>\n\n<p>\n<a href=\"https://docs.google.com/document/d/{{$node[\"Create Draft Brief Document\"].json[\"id\"]}}/edit\">\nOpen approved course brief\n</a>\n</p>\n\n<p>The brief is now ready to move into course development.</p>\n\n<p>Regards,<br>\nAkinwale</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2256,
+        -192
+      ],
+      "id": "01645de0-a341-4806-b1bc-2c65c4921eba",
+      "name": "Notify Requester - Brief Approved",
+      "webhookId": "e7f695e5-382b-476c-9d35-7f0da39c1881",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BICmAVRiz5bO9KHt",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g",
+          "mode": "list",
+          "cachedResultName": "AI Course Design Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Request ID": "={{$node[\"Append row in sheet\"].json[\"Request ID\"]}}",
+            "Status": "Rejected",
+            "Reviewer Decision": "={{$json[\"data\"][\"Reviewer Decision\"]}}",
+            "Reviewer Feedback": "={{$json[\"data\"][\"Reviewer Feedback\"]}}",
+            "Final Brief Link": "={{$json[\"data\"][\"Reviewer Feedback\"]}}"
+          },
+          "matchingColumns": [
+            "Request ID"
+          ],
+          "schema": [
+            {
+              "id": "Request ID",
+              "displayName": "Request ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Submitted At",
+              "displayName": "Submitted At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Name",
+              "displayName": "Requester Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Email",
+              "displayName": "Requester Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Department",
+              "displayName": "Department",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Training Topic",
+              "displayName": "Training Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Business Problem",
+              "displayName": "Business Problem",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Target Audience",
+              "displayName": "Target Audience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Audience Size",
+              "displayName": "Audience Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Delivery Format",
+              "displayName": "Delivery Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source Material",
+              "displayName": "Source Material",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Name",
+              "displayName": "SME Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Email ",
+              "displayName": "SME Email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Compliance Requirement",
+              "displayName": "Compliance Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Preferred Tone",
+              "displayName": "Preferred Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Draft",
+              "displayName": "AI Draft",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Decision",
+              "displayName": "Reviewer Decision",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Feedback",
+              "displayName": "Reviewer Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Final Brief Link",
+              "displayName": "Final Brief Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Notes",
+              "displayName": "Error Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2016,
+        208
+      ],
+      "id": "2e89db3c-93c0-443f-9a9c-d1c8a8a661f3",
+      "name": "Update Status to Rejected",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dt5jjof0B50r5HhX",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$node[\"Training Request Form\"].json[\"Requester Email\"]}}",
+        "subject": "=Course brief rejected: {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}",
+        "message": "=<p>Hello {{$node[\"Training Request Form\"].json[\"Requester Name\"]}},</p>\n\n<p>The AI-assisted course design brief for your training request has been reviewed and was not approved.</p>\n\n<p><strong>Training topic:</strong> {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}</p>\n\n<p><strong>Status:</strong> Rejected</p>\n\n<p><strong>Reviewer feedback:</strong></p>\n\n<p>{{$json[\"data\"][\"Reviewer Feedback\"]}}</p>\n\n<p>You can view the reviewed draft here:</p>\n\n<p>\n<a href=\"https://docs.google.com/document/d/{{$node[\"Create Draft Brief Document\"].json[\"id\"]}}/edit\">\nOpen rejected course brief\n</a>\n</p>\n\n<p>This request will not move into course development unless a new or revised request is submitted.</p>\n\n<p>Regards,<br>\nAkinwale</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2272,
+        160
+      ],
+      "id": "a4bca213-48e1-4eb3-b164-7282e46f8bfa",
+      "name": "Notify Requester - Brief Rejected",
+      "webhookId": "85ade3f5-bc42-4b99-97e6-8f41e05a10c0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BICmAVRiz5bO9KHt",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "18bd7ca5-4e3a-4a6f-b41a-f6f576c14902",
+              "name": "revision_prompt",
+              "value": "=You are an expert instructional designer using the ADDIE model.  A reviewer has requested revisions to an AI-generated course design brief.  Your task: Revise the course design brief using the reviewer feedback below.  Original training request:  Training topic: {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}  Business problem: {{$node[\"Training Request Form\"].json[\"Business Problem\"]}}  Target audience: {{$node[\"Training Request Form\"].json[\"Target Audience\"]}}  Preferred delivery format: {{$node[\"Training Request Form\"].json[\"Delivery Format\"]}}  Compliance requirement: {{$node[\"Training Request Form\"].json[\"Compliance Requirement\"]}}  Preferred tone: {{$node[\"Training Request Form\"].json[\"Preferred Tone\"]}}  Original AI-generated draft brief: {{$node[\"Extract AI Draft\"].json[\"ai_draft\"]}}  Reviewer decision: {{$json[\"data\"][\"Reviewer Decision\"]}}  Reviewer feedback: {{$json[\"data\"][\"Reviewer Feedback\"]}}  Revision instructions: - Apply the reviewer feedback carefully. - Do not invent facts. - Keep the brief practical and concise. - Keep measurable learning objectives. - If information is still missing, list it clearly under Missing information. - Keep a human-review note at the end. - Return the revised course brief using the same 10 headings as the original brief.",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2016,
+        0
+      ],
+      "id": "1b6a57ce-46ee-4e21-922a-d68a4fe49f3a",
+      "name": "Build Revision Prompt"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "={{$json[\"revision_prompt\"]}}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        2160,
+        0
+      ],
+      "id": "bdffa81e-1a00-4063-8f1b-d01e8115f012",
+      "name": "Generate Revised Brief with OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "XApoOrPDfPegqGJv",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b43e50e7-bb46-4e43-a573-ea88bd7af82d",
+              "name": "revised_ai_draft",
+              "value": "={{$json.output[0].content[0].text}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2416,
+        0
+      ],
+      "id": "2b8ce231-f5a5-47fb-9f1a-35e1c06e13f7",
+      "name": "Extract Revised Draft"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{$node[\"Create Draft Brief Document\"].json[\"id\"]}}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "=------------------------------------------------------------  REVISED AI-GENERATED COURSE BRIEF  Revision reason: {{$node[\"Send Review Request\"].json[\"data\"][\"Reviewer Feedback\"]}}  {{$node[\"Extract Revised Draft\"].json[\"revised_ai_draft\"]}}  ------------------------------------------------------------  SECOND HUMAN REVIEW REQUIRED  This revised draft was generated using reviewer feedback. It must still be reviewed before course development continues."
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        2624,
+        0
+      ],
+      "id": "ecddca41-6e4d-4ecf-8fce-44bfa486dadd",
+      "name": "Add Revised Brief to Document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "PtGcbpmig6CuX8Sf",
+          "name": "Google Docs OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g",
+          "mode": "list",
+          "cachedResultName": "AI Course Design Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uhMwnL-2jdUQQJyyo4PW7i1dOLdEkYK8Mt2dYv_a48g/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Revised - Needs Review",
+            "Reviewer Decision": "={{$node[\"Send Review Request\"].json[\"data\"][\"Reviewer Decision\"]}}",
+            "Reviewer Feedback": "={{$node[\"Send Review Request\"].json[\"data\"][\"Reviewer Feedback\"]}}",
+            "Final Brief Link": "=https://docs.google.com/document/d/{{$node[\"Create Draft Brief Document\"].json[\"id\"]}}/edit",
+            "Request ID": "={{$node[\"Append row in sheet\"].json[\"Request ID\"]}}"
+          },
+          "matchingColumns": [
+            "Request ID"
+          ],
+          "schema": [
+            {
+              "id": "Request ID",
+              "displayName": "Request ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Submitted At",
+              "displayName": "Submitted At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Name",
+              "displayName": "Requester Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requester Email",
+              "displayName": "Requester Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Department",
+              "displayName": "Department",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Training Topic",
+              "displayName": "Training Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Business Problem",
+              "displayName": "Business Problem",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Target Audience",
+              "displayName": "Target Audience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Audience Size",
+              "displayName": "Audience Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Delivery Format",
+              "displayName": "Delivery Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source Material",
+              "displayName": "Source Material",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Name",
+              "displayName": "SME Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SME Email ",
+              "displayName": "SME Email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Compliance Requirement",
+              "displayName": "Compliance Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Preferred Tone",
+              "displayName": "Preferred Tone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI Draft",
+              "displayName": "AI Draft",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Decision",
+              "displayName": "Reviewer Decision",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviewer Feedback",
+              "displayName": "Reviewer Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Final Brief Link",
+              "displayName": "Final Brief Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Notes",
+              "displayName": "Error Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2816,
+        0
+      ],
+      "id": "3ea7f581-0826-4473-a3d6-af78742e33d9",
+      "name": "Update Status to Revised",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dt5jjof0B50r5HhX",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$node[\"Training Request Form\"].json[\"SME Email\"]}}",
+        "subject": "=Revised course brief ready for review: {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}",
+        "message": "=<p>Hello {{$node[\"Training Request Form\"].json[\"SME Name\"]}},</p>\n\n<p>The course design brief has been revised based on your feedback.</p>\n\n<p><strong>Training topic:</strong> {{$node[\"Training Request Form\"].json[\"Training Topic\"]}}</p>\n\n<p><strong>Previous feedback:</strong></p>\n\n<p>{{$node[\"Send Review Request\"].json[\"data\"][\"Reviewer Feedback\"]}}</p>\n\n<p>You can review the updated brief here:</p>\n\n<p>\n<a href=\"https://docs.google.com/document/d/{{$node[\"Create Draft Brief Document\"].json[\"id\"]}}/edit\">\nOpen revised course brief\n</a>\n</p>\n\n<p>Please review the revised section before the brief is approved for course development.</p>\n\n<p><strong>Reminder:</strong> AI-assisted content must still be reviewed by a human instructional designer or SME before use.</p>\n\n<p>Regards,<br>\nAkinwale</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2992,
+        0
+      ],
+      "id": "d5969d19-d6cd-467d-adf5-b34c923680ef",
+      "name": "Notify Reviewer - Revised Brief Ready",
+      "webhookId": "0bdbdc4f-be20-4de7-be5c-6d98e863cf35",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BICmAVRiz5bO9KHt",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Training Request Form": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Build OpenAI Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build OpenAI Prompt": {
+      "main": [
+        [
+          {
+            "node": "Generate Course Brief with OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Course Brief with OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Extract AI Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract AI Draft": {
+      "main": [
+        [
+          {
+            "node": "Create Draft Brief Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Draft Brief Document": {
+      "main": [
+        [
+          {
+            "node": "Add Brief Content to Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Brief Content to Document": {
+      "main": [
+        [
+          {
+            "node": "Send Review Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Review Request": {
+      "main": [
+        [
+          {
+            "node": "Route Review Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Review Decision": {
+      "main": [
+        [
+          {
+            "node": "Update Status to Approved",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Revision Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Status to Rejected",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status to Approved": {
+      "main": [
+        [
+          {
+            "node": "Notify Requester - Brief Approved",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status to Rejected": {
+      "main": [
+        [
+          {
+            "node": "Notify Requester - Brief Rejected",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Revision Prompt": {
+      "main": [
+        [
+          {
+            "node": "Generate Revised Brief with OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Revised Brief with OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Extract Revised Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Revised Draft": {
+      "main": [
+        [
+          {
+            "node": "Add Revised Brief to Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Revised Brief to Document": {
+      "main": [
+        [
+          {
+            "node": "Update Status to Revised",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status to Revised": {
+      "main": [
+        [
+          {
+            "node": "Notify Reviewer - Revised Brief Ready",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "5b0f7732-c5b4-4679-8f56-ad5caa95c3c6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "77999948fee0097168d84b4a1a73f33588e5fe78f8f8df607a005caabd4abc72"
+  },
+  "nodeGroups": [],
+  "id": "jSWB6ZfkkRmg9ROC",
+  "tags": []
+}
